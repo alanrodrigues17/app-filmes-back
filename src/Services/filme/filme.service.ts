@@ -13,10 +13,6 @@ export class FilmeService {
         return await this.filmeRepositorio.getAllFilmesCurtidos();
     }
 
-    async saveFilme(novoFilme: FilmeDTO): Promise<Filme>{
-        return await this.filmeRepositorio.saveFilme(novoFilme);
-    }
-
     async getFilmeById(filmeId: number): Promise<Filme> {
         try {
             const existeFilme = this.filmeRepositorio.getFilmeById(filmeId);
@@ -26,6 +22,10 @@ export class FilmeService {
         } catch (e) {
             throw new BadRequestException("Sem resultados para esse id");
         }
+    }
+    
+    async saveFilme(novoFilme: FilmeDTO): Promise<Filme>{
+        return await this.filmeRepositorio.saveFilme(novoFilme);
     }
 
     async updateFilmeById(filmeId: number, novoFilme: FilmeDTO): Promise<Filme> {

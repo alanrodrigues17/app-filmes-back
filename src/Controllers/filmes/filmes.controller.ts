@@ -14,12 +14,17 @@ export class FilmesController {
         return await this.filmeService.getAllFilmesCurtidos();
     }
 
+    @Get('id/:filmeId')
+    async getFilmeById(@Param('filmeId') filmeId: number): Promise<Filme>{
+        return await this.filmeService.getFilmeById(filmeId);
+    }
+
     @Post()
     async saveFilme(@Body() novoFilme: FilmeDTO): Promise<Filme>{
         return await this.filmeService.saveFilme(novoFilme);
     }
 
-    @Patch(':filmeID')
+    @Patch('atualizar/:filmeID')
     async updateFilmeById(@Param('filmeID') filmeId: number, @Body() novoFilme: FilmeDTO): Promise<Filme> {
         return await this.filmeService.updateFilmeById(filmeId, novoFilme);
     }
